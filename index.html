@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- GVF 2026 Dashboard v3.13 — Build: 2026-06-11 10:15 KST — ATTENDEES separated -->
+<!-- GVF 2026 Dashboard v3.14 — Build: 2026-06-11 16:50 KST — Sort edit debug -->
 <html lang="ko">
 <head>
 <meta charset="UTF-8"/>
@@ -4722,13 +4722,16 @@ function _computeMatSortedForOpts(opts, matKey) {
 }
 
 window.moveMatItem = (matKey, spId, delta) => {
+  console.log(`[순서편집] 시작: matKey=${matKey}, spId=${spId}, delta=${delta}`);
   if (!window.MAT_SORT_ORDER) window.MAT_SORT_ORDER = {};
   try {
     const arr = _rebuildMatSorted(matKey);
+    console.log(`[순서편집] 현재 정렬:`, arr.map(s => `${s.id}:${s.name}`));
     const ids = arr.map(s => s.id);
     const idx = ids.indexOf(spId);
     if (idx < 0) {
-      console.warn(`[순서편집] id 못 찾음: ${spId} (matKey=${matKey})`, ids);
+      console.warn(`[순서편집] ❌ id 못 찾음: ${spId} (matKey=${matKey})`, ids);
+      alert(`디버그: id "${spId}"를 찾을 수 없습니다.\n콘솔(F12) 확인하세요.`);
       return;
     }
     const newIdx = idx + delta;
@@ -4741,11 +4744,12 @@ window.moveMatItem = (matKey, spId, delta) => {
     ids[idx] = ids[newIdx];
     ids[newIdx] = tmp;
     window.MAT_SORT_ORDER[matKey] = ids;
-    console.log(`[순서편집] ${spId} 이동: ${idx} → ${newIdx}`);
+    console.log(`[순서편집] ✅ ${spId} 이동: ${idx} → ${newIdx}`);
+    console.log(`[순서편집] 새 정렬 저장:`, ids);
     scheduleSave();
     draw();
   } catch(e) {
-    console.error("[순서편집] 오류:", e);
+    console.error("[순서편집] ❌ 오류:", e);
     alert("순서 편집 중 오류: " + e.message);
   }
 };
