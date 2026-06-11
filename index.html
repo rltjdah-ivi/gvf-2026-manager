@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<!-- GVF 2026 Dashboard v3.15 — Build: 2026-06-11 17:10 KST — Sort id type fix -->
+<!-- GVF 2026 Dashboard v3.16 — Build: 2026-06-11 17:30 KST — PPT exclude Mariatou, Ajoy -->
 <html lang="ko">
 <head>
 <meta charset="UTF-8"/>
@@ -4666,7 +4666,7 @@ function _rebuildMatSorted(matKey) {
   if (matKey === "ppt") {
     return _computeMatSortedForOpts({
       excludeChairs: true,
-      excludeNames: ["Jerome", "Lim", "Minwon", "Jae Kyoun", "Hee Soo", "Jae-Hwan"],
+      excludeNames: ["Jerome", "Lim", "Minwon", "Jae Kyoun", "Hee Soo", "Jae-Hwan", "Mariatou", "Ajoy"],
       includeNames: ["Sushant"],
       duplicateAfter: [{after:"Sushant", name:"Nakorn Premsri", suffix:"Plenary"}]
     }, matKey);
@@ -4804,7 +4804,7 @@ function pageMatAbstract() {
 function pageMatPpt() {
   return renderMaterialBySpeaker("ppt", "PPT Slides", "🖼", "연사별 발표 슬라이드 수집 (좌장·인사말 등 제외)", {
     excludeChairs: true,
-    excludeNames: ["Jerome", "Lim", "Minwon", "Jae Kyoun", "Hee Soo", "Jae-Hwan"],
+    excludeNames: ["Jerome", "Lim", "Minwon", "Jae Kyoun", "Hee Soo", "Jae-Hwan", "Mariatou", "Ajoy"],
     includeNames: ["Sushant"],
     duplicateAfter: [
       {after: "Sushant", name: "Nakorn Premsri", suffix: "Plenary"}
